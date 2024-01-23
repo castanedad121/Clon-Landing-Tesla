@@ -1,0 +1,96 @@
+---
+const {
+  color,
+  title,
+  subtitle,
+  paragraph,
+  paragraph2,
+  underline,
+  id,
+  colorFooter,
+  button1,
+  button2,
+  button3,
+  pfooter1,
+  pfooter2,
+  img,
+  video,
+  showFooter
+} = Astro.props;
+const textColor = `text-${color}`;
+import FooterMenu from "./FooterMenu.astro";
+---
+
+<section
+  class="landing-section bg-black h-screen w-screen text-center overflow-hidden relative"
+  data-header-color={color}
+  id={id}
+>
+  <div class="z-30 relative h-full flex flex-col">
+    <header>
+      <h2 class={`${textColor} pt-20 text-[42px] font-medium`}>
+        {title}
+      </h2>
+      <p class={`${textColor} text-lg font-medium`}>
+        {subtitle}
+      </p>
+      <p class={`${textColor} text-sm font-medium ${underline}`}>
+        {paragraph2}
+      </p>
+      <p class={`${textColor} text-xs`}>
+        {paragraph}
+      </p>
+    </header>
+
+    <footer class="flex flex-col flex-grow justify-end pb-5">
+      <div class="flex flex-col gap-y-9 items-center justify-center">
+        <div
+          class="flex flex-wrap gap-y-5 items-center justify-center w-screen"
+        >
+          {button1 && <a
+            class="bg-white/70 text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-black hover:text-white inline-flex justify-center items-center text-black/65 w-[250px]  mx-2 hover:scale-95"
+            href="#"
+          >
+            {button1}</a>}
+          {button2 && <a
+          class="bg-black/50 text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-gray-600 hover:text-black inline-flex justify-center items-center text-white w-[250px]  mx-2 hover:scale-95"
+            href="#"
+          >{button2}</a>}
+          {button3 && <a
+            class="border-white border-2 bg-transparent text-sm rounded font-medium mb-11 px-12 py-2 transition-colors hover:bg-white hover:text-black inline-flex justify-center items-center text-white/85 w-[250px]  mx-2 hover:scale-95"
+            href="#"
+          >
+            {button3}</a>}
+        </div>
+        <div>
+         {pfooter1 ? <p class={`text-${colorFooter} text-xs mx-8 `}>{pfooter1}</p> : <></>} 
+         {pfooter2 ? <p class={`text-${colorFooter} text-xs mx-8 `}>
+          <a href="#See Details" class="underline">{pfooter2}</a>.
+        </p> : <d></d>} 
+        </div>
+        <div>
+          {showFooter && <FooterMenu/>}
+        </div>
+       
+      </div>
+
+    </footer>
+  </div>
+  <div class="absolute top-0 bottom-0 h-full w-full z-10">
+    {img &&<img
+      alt={title}
+      class="h-full w-full object-cover object-center"
+      src={img}
+     />}
+     {video && <video
+        class="object-center object-cover h-full w-full"
+        autoplay
+        muted
+        loop
+        src={video}/>}
+  </div>
+</section>
+
+
+  
+
